@@ -74,3 +74,25 @@ You are required to submit the following:
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+
+
+
+Notes
+
+## req.body contiene 'parámetros' que se envían desde el cliente como parte de una solicitud POST. Ver la API .
+
+// POST user[name]=tobi&user[email]=tobi@learnboost.com
+req.body.user.name
+// => "tobi"
+
+req.body.user.email
+// => "tobi@learnboost.com"
+
+// POST { "name": "tobi" }
+req.body.name
+// => "tobi
+
+
+## body-parser extrae toda la parte del cuerpo de una secuencia de solicitud entrante y la expone en req.body.
+Para leer los datos HTTP POST, tenemos que usar el módulo de nodo "body-parser". body-parser es una pieza de middleware express que lee la entrada de un formulario y la almacena como un objeto javascript accesible a través dereq.body
