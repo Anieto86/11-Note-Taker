@@ -12,7 +12,6 @@ let PORT = 3000;
 
 //Data
 
-
     let characters = [{
         routeName: "yoda",
         name: "Yoda",
@@ -34,10 +33,6 @@ let PORT = 3000;
       }];
 
 
-
-
-
-
 //GET method route
 app.get('/', function (req, res){
     res.send("Welcome");
@@ -50,9 +45,11 @@ app.get('/index', function(req, res){
 });
 
 
-// POST method route
+// POST method route, send the data in JSON format 
 app.post('/api/notes', function (req, res) {
-    res.send('POST request to the homepage');
+  res.json()
+  
+  res.send('POST request to the homepage');
 
     //req.body
   });
@@ -72,8 +69,8 @@ app.delete('/api/notes/:id', function (req, res) {
 //Listener
 var PORT = process.env.PORT || 3000;
 app.listen(port, function() {
-  console.log('Server started on port ' + port;
-})
+  console.log('Server started on port ' + port);
+});
 
 
 
