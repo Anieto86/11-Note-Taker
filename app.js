@@ -7,29 +7,17 @@ let bodyParser = require ("body-parser");
 let app = express();
 let PORT = process.env.PORT || 3000;
 
+// middlewares 
+//they can modify your request before it gets to your handlers
+//it's like a pipeline, the request will move through those middlewares and they can optionally modify the request object
+
+// 
 app.use(express.static(__dirname + '/public/'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // esto para decodificar el formaot URL 
+app.use(express.json()); // Esto lo convierte en JSON 
+
 //Data
-    let characters = [{
-        routeName: "yoda",
-        name: "Yoda",
-        role: "Jedi Master",
-        age: 900,
-        forcePoints: 2000
-      }, {
-        routeName: "darthmaul",
-        name: "Darth Maul",
-        role: "Sith Lord",
-        age: 200,
-        forcePoints: 1200
-      }, {
-        routeName: "obiwankenobi",
-        name: "Obi Wan Kenobi",
-        role: "Jedi Knight",
-        age: 60,
-        forcePoints: 1350
-      }];
+
 //GET method route
 app.get('/', function (req, res){
   // res.sendFile(path.join(__dirname, '/db/db.json'))
@@ -45,7 +33,9 @@ app.get('/index', function(req, res){
 app.post('/api/notes/', function (req, res) {
   console.log('llega hasta 1')
   
+
   var note = req.body;
+
   filePath = __dirname + '/db/db.json';
   fs.appendFile(filePath, JSON.stringify(note), function(err) {
 		if (err) { throw err }
@@ -54,6 +44,9 @@ app.post('/api/notes/', function (req, res) {
     })
   })
 });
+
+
+
 //Delete
 app.delete('/api/notes/:id', function (req, res) {
     res.send('DELETE request to homepage')
