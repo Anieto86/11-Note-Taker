@@ -40,29 +40,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="./assets/js/index.js"></script>
 </body>
-  <script>
-    $(".save-note").on("click", function () {
-        var newNote= {
-            title: $(".note-title").val().trim(),
-            text: $(".note-textarea").val().trim()
-        };
-        console.log(newNote)
-        $.post("/api/notes", newNote)
-        .then(function(data) {
-          console.log(data);
-        });
-
-        $.get("/api/notes/", function(data) {
-          console.log(data);
-          $(".card1").text(data.title);
-          $(".card2").text(data.text);
-      });
-
-});
-
-
-
-
-
-  </script>
 </html>
